@@ -1,0 +1,76 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+BitmapFileCache	src/com/mogujie/bitmapcache/BitmapFileCache.java	/^	private BitmapFileCache(String sdcardDir){$/;"	m	class:BitmapFileCache	file:
+BitmapFileCache	src/com/mogujie/bitmapcache/BitmapFileCache.java	/^class BitmapFileCache{$/;"	c
+BitmapLoader	src/com/mogujie/bitmapcache/BitmapLoader.java	/^	private BitmapLoader(int memeryPoolSize, String fileCacheDir){$/;"	m	class:BitmapLoader	file:
+BitmapLoader	src/com/mogujie/bitmapcache/BitmapLoader.java	/^public class BitmapLoader{$/;"	c
+BitmapMemoryPool	src/com/mogujie/bitmapcache/BitmapMemoryPool.java	/^	private BitmapMemoryPool(int size){$/;"	m	class:BitmapMemoryPool	file:
+BitmapMemoryPool	src/com/mogujie/bitmapcache/BitmapMemoryPool.java	/^class BitmapMemoryPool{$/;"	c
+DEFAULT_DIR	src/com/mogujie/bitmapcache/BitmapFileCache.java	/^	private static final String DEFAULT_DIR = "\/Bitmap-Cache";$/;"	f	class:BitmapFileCache	file:
+DEFAULT_MEMORY_SIZE	src/com/mogujie/bitmapcache/BitmapMemoryPool.java	/^	private static final int DEFAULT_MEMORY_SIZE = 1024 * 1024 * 6;$/;"	f	class:BitmapMemoryPool	file:
+DEFAULT_QUALITY	src/com/mogujie/bitmapcache/BitmapFileCache.java	/^	private static final int DEFAULT_QUALITY = 75;$/;"	f	class:BitmapFileCache	file:
+DecodeBitmap	src/com/mogujie/bitmapcache/DecodeBitmap.java	/^	private DecodeBitmap(){$/;"	m	class:DecodeBitmap	file:
+DecodeBitmap	src/com/mogujie/bitmapcache/DecodeBitmap.java	/^public class DecodeBitmap {$/;"	c
+THREAD_COUNT	src/com/mogujie/bitmapcache/BitmapLoader.java	/^	private static final int THREAD_COUNT = 8;$/;"	f	class:BitmapLoader	file:
+URL_KEY	src/com/mogujie/bitmapcache/BitmapLoader.java	/^	public static final String URL_KEY = "url";$/;"	f	class:BitmapLoader
+addQueue	src/com/mogujie/bitmapcache/BitmapMemoryPool.java	/^	 public void addQueue(String url){$/;"	m	class:BitmapMemoryPool
+com.mogujie.bitmapcache	src/com/mogujie/bitmapcache/BitmapFileCache.java	/^package com.mogujie.bitmapcache;$/;"	p
+com.mogujie.bitmapcache	src/com/mogujie/bitmapcache/BitmapLoader.java	/^package com.mogujie.bitmapcache;$/;"	p
+com.mogujie.bitmapcache	src/com/mogujie/bitmapcache/BitmapMemoryPool.java	/^package com.mogujie.bitmapcache;$/;"	p
+com.mogujie.bitmapcache	src/com/mogujie/bitmapcache/DecodeBitmap.java	/^package com.mogujie.bitmapcache;$/;"	p
+com.mogujie.bitmapcache	src/com/mogujie/bitmapcache/FileCacheMethod.java	/^package com.mogujie.bitmapcache;$/;"	p
+decodeByteArray	src/com/mogujie/bitmapcache/DecodeBitmap.java	/^	public  Bitmap decodeByteArray(byte[] data, int offset, int length){$/;"	m	class:DecodeBitmap
+decodeByteArray	src/com/mogujie/bitmapcache/DecodeBitmap.java	/^	public Bitmap decodeByteArray(byte[] data, int offset, int length, Options opts){$/;"	m	class:DecodeBitmap
+decodeFile	src/com/mogujie/bitmapcache/DecodeBitmap.java	/^	public Bitmap decodeFile(String fileName){$/;"	m	class:DecodeBitmap
+decodeFile	src/com/mogujie/bitmapcache/DecodeBitmap.java	/^	public Bitmap decodeFile(String filenName, Options opts){$/;"	m	class:DecodeBitmap
+decodeStream	src/com/mogujie/bitmapcache/DecodeBitmap.java	/^	public Bitmap decodeStream(InputStream is){$/;"	m	class:DecodeBitmap
+decodeStream	src/com/mogujie/bitmapcache/DecodeBitmap.java	/^	public Bitmap decodeStream(InputStream is, Rect outPadding, Options opts){$/;"	m	class:DecodeBitmap
+freeMemory	src/com/mogujie/bitmapcache/DecodeBitmap.java	/^	private void freeMemory(){$/;"	m	class:DecodeBitmap	file:
+get	src/com/mogujie/bitmapcache/BitmapFileCache.java	/^	public Bitmap get(String url){$/;"	m	class:BitmapFileCache
+get	src/com/mogujie/bitmapcache/BitmapMemoryPool.java	/^	public Bitmap get(String url){$/;"	m	class:BitmapMemoryPool
+getBitmap	src/com/mogujie/bitmapcache/BitmapLoader.java	/^	public Bitmap getBitmap(String url){$/;"	m	class:BitmapLoader
+getBitmapFromNet	src/com/mogujie/bitmapcache/BitmapLoader.java	/^	synchronized private Bitmap getBitmapFromNet(String strUrl, Options options) {$/;"	m	class:BitmapLoader	file:
+getMaxMemorySize	src/com/mogujie/bitmapcache/BitmapMemoryPool.java	/^	public int getMaxMemorySize(){$/;"	m	class:BitmapMemoryPool
+getSDCardDir	src/com/mogujie/bitmapcache/BitmapFileCache.java	/^	public String getSDCardDir(){$/;"	m	class:BitmapFileCache
+hasSDCard	src/com/mogujie/bitmapcache/BitmapFileCache.java	/^	boolean hasSDCard(){$/;"	m	class:BitmapFileCache
+init	src/com/mogujie/bitmapcache/BitmapFileCache.java	/^	private void init(String dir){$/;"	m	class:BitmapFileCache	file:
+instance	src/com/mogujie/bitmapcache/BitmapFileCache.java	/^	public static BitmapFileCache instance(String sdcardDir){$/;"	m	class:BitmapFileCache
+instance	src/com/mogujie/bitmapcache/BitmapLoader.java	/^	public static BitmapLoader instance(int memeryPoolSize, String fileCacheDir){$/;"	m	class:BitmapLoader
+instance	src/com/mogujie/bitmapcache/BitmapMemoryPool.java	/^	public static BitmapMemoryPool instance(int size){$/;"	m	class:BitmapMemoryPool
+instance	src/com/mogujie/bitmapcache/DecodeBitmap.java	/^	public static DecodeBitmap instance(){$/;"	m	class:DecodeBitmap
+mBitmapFileCache	src/com/mogujie/bitmapcache/BitmapLoader.java	/^	private BitmapFileCache mBitmapFileCache;$/;"	f	class:BitmapLoader	file:
+mBitmapMemoryPool	src/com/mogujie/bitmapcache/BitmapLoader.java	/^	private BitmapMemoryPool mBitmapMemoryPool;$/;"	f	class:BitmapLoader	file:
+mCacheMemorySize	src/com/mogujie/bitmapcache/BitmapMemoryPool.java	/^	private int mCacheMemorySize;$/;"	f	class:BitmapMemoryPool	file:
+mCachePool	src/com/mogujie/bitmapcache/BitmapMemoryPool.java	/^	private Map<String, Bitmap> mCachePool = new HashMap<String, Bitmap>();$/;"	f	class:BitmapMemoryPool	file:
+mDirPath	src/com/mogujie/bitmapcache/BitmapFileCache.java	/^	private String mDirPath = Environment.getExternalStorageDirectory() + DEFAULT_DIR;$/;"	f	class:BitmapFileCache	file:
+mFileExecutor	src/com/mogujie/bitmapcache/BitmapLoader.java	/^	private ThreadPoolExecutor mFileExecutor = new ThreadPoolExecutor($/;"	f	class:BitmapLoader	file:
+mFileQueue	src/com/mogujie/bitmapcache/BitmapLoader.java	/^	private BlockingQueue<Runnable> mFileQueue = new LinkedBlockingQueue<Runnable>($/;"	f	class:BitmapLoader	file:
+mMaxMemorySize	src/com/mogujie/bitmapcache/BitmapMemoryPool.java	/^	private int mMaxMemorySize = DEFAULT_MEMORY_SIZE;$/;"	f	class:BitmapMemoryPool	file:
+mNetExecutor	src/com/mogujie/bitmapcache/BitmapLoader.java	/^	private ThreadPoolExecutor mNetExecutor = new ThreadPoolExecutor($/;"	f	class:BitmapLoader	file:
+mNetQueue	src/com/mogujie/bitmapcache/BitmapLoader.java	/^	private BlockingQueue<Runnable> mNetQueue = new LinkedBlockingQueue<Runnable>($/;"	f	class:BitmapLoader	file:
+mQuality	src/com/mogujie/bitmapcache/BitmapFileCache.java	/^	private int mQuality = DEFAULT_QUALITY;$/;"	f	class:BitmapFileCache	file:
+mReqingUrls	src/com/mogujie/bitmapcache/BitmapLoader.java	/^	private List<String> mReqingUrls = new ArrayList<String>();$/;"	f	class:BitmapLoader	file:
+mUrlQueue	src/com/mogujie/bitmapcache/BitmapMemoryPool.java	/^	private Queue<String> mUrlQueue = new LinkedList<String>();$/;"	f	class:BitmapMemoryPool	file:
+put	src/com/mogujie/bitmapcache/BitmapFileCache.java	/^	public void put(String url, Bitmap bitmap){$/;"	m	class:BitmapFileCache
+put	src/com/mogujie/bitmapcache/BitmapFileCache.java	/^	public void put(String url, Bitmap bitmap, CompressFormat format){$/;"	m	class:BitmapFileCache
+put	src/com/mogujie/bitmapcache/BitmapLoader.java	/^	public void put(String url, Bitmap bitmap){$/;"	m	class:BitmapLoader
+put	src/com/mogujie/bitmapcache/BitmapMemoryPool.java	/^	 public void put(String url, Bitmap bitmap){$/;"	m	class:BitmapMemoryPool
+remove	src/com/mogujie/bitmapcache/BitmapMemoryPool.java	/^	public void remove(){$/;"	m	class:BitmapMemoryPool
+reqBitmap	src/com/mogujie/bitmapcache/BitmapLoader.java	/^	public void reqBitmap(final String url, Handler handler){$/;"	m	class:BitmapLoader
+reqBitmap	src/com/mogujie/bitmapcache/BitmapLoader.java	/^	public void reqBitmap(final String url, final Handler handler, final Options options){$/;"	m	class:BitmapLoader
+sBitmapFileCache	src/com/mogujie/bitmapcache/BitmapFileCache.java	/^	private static BitmapFileCache sBitmapFileCache;$/;"	f	class:BitmapFileCache	file:
+sBitmapLoader	src/com/mogujie/bitmapcache/BitmapLoader.java	/^	private static BitmapLoader sBitmapLoader;$/;"	f	class:BitmapLoader	file:
+sBitmapPool	src/com/mogujie/bitmapcache/BitmapMemoryPool.java	/^	private static BitmapMemoryPool sBitmapPool;$/;"	f	class:BitmapMemoryPool	file:
+sDecodeBitmap	src/com/mogujie/bitmapcache/DecodeBitmap.java	/^	private static DecodeBitmap sDecodeBitmap;$/;"	f	class:DecodeBitmap	file:
+sendMessage	src/com/mogujie/bitmapcache/BitmapLoader.java	/^	private void sendMessage(Bitmap bitmap, Handler handler, String url){$/;"	m	class:BitmapLoader	file:
+setCompressQuality	src/com/mogujie/bitmapcache/BitmapFileCache.java	/^	public void setCompressQuality(int quality){$/;"	m	class:BitmapFileCache
+setFileCacheDir	src/com/mogujie/bitmapcache/BitmapLoader.java	/^	public void setFileCacheDir(String dir){$/;"	m	class:BitmapLoader
+setMaxMemorySize	src/com/mogujie/bitmapcache/BitmapMemoryPool.java	/^	public void setMaxMemorySize(int maxMemorySize){$/;"	m	class:BitmapMemoryPool
+setMemeryPoolSize	src/com/mogujie/bitmapcache/BitmapLoader.java	/^	public void setMemeryPoolSize(int size){$/;"	m	class:BitmapLoader
+setSDCardDir	src/com/mogujie/bitmapcache/BitmapFileCache.java	/^	public void setSDCardDir(String sdcardDir){$/;"	m	class:BitmapFileCache
+toMD5	src/com/mogujie/bitmapcache/BitmapFileCache.java	/^	private String toMD5(String str) {$/;"	m	class:BitmapFileCache	file:
+toTail	src/com/mogujie/bitmapcache/BitmapMemoryPool.java	/^	 public void toTail(String url){$/;"	m	class:BitmapMemoryPool
