@@ -30,7 +30,7 @@ public class UnLimitFileCache extends BaseFileCache{
 	
 	private UnLimitFileCache(String fileDir){
 		super(fileDir);
-//		mDirPath =  Environment.getExternalStorageDirectory() + File.separator + sdcardDir;
+		mDirPath =  Environment.getExternalStorageDirectory() + File.separator + fileDir;
 		mDelFileMethod = new DelFileByTime();
 		init(mDirPath);
 	}

@@ -1,6 +1,8 @@
 package com.bitmapcache.core;
 
 import com.bitmapcache.disc.IFileCache;
+import com.bitmapcache.disc.UnLimitFileCache;
+import com.mogujie.memory.BitmapLruMemoryCache;
 import com.mogujie.memory.IMemoryCache;
 
 
@@ -29,11 +31,13 @@ public class Configuration {
 		
 		private int mMemoryCacheSize = 1024 * 1024 * 4;  
 		private String mBitmapCacheDir = "bitmapcache";
-		private IMemoryCache mMemoryCache = null;
-		private IFileCache mFileCache;
 		private int mFileCacheThreadCount = 3;
 		private int mNetThreadCount = 3;
 		private boolean mEnableLog = false;
+		private IMemoryCache mMemoryCache = new BitmapLruMemoryCache(mMemoryCacheSize);
+		private IFileCache mFileCache = UnLimitFileCache.instance(mBitmapCacheDir);
+
+
 
 		public Builder memoeryCacheSize(int size){
 			mMemoryCacheSize = size;

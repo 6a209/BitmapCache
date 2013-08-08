@@ -4,7 +4,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -21,12 +20,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.widget.ImageView;
 
-import com.bitmapcache.disc.IFileCache;
-import com.bitmapcache.disc.UnLimitFileCache;
-import com.mogujie.handlingbitmap.BaseHandlingBitmap;
+import com.bitmapcache.utils.Debug;
+import com.mogujie.handlingbitmap.BaseHandleBitmap;
 import com.mogujie.handlingbitmap.RoundCornerBitmap;
-import com.mogujie.memory.IMemoryCache;
 
 
 /**
@@ -51,13 +49,39 @@ public class BitmapLoader{
 	private ThreadPoolExecutor mNetExecutor;
 
 	private ThreadPoolExecutor mFileExecutor;
-
+	private boolean mIsInit = false;
 	private List<String> mReqingUrls = new ArrayList<String>();
-
 	private static BitmapLoader sBitmapLoader;
+	
+	public interface OnLoadOverListener{
+		void onLoadOver(String url, Bitmap bitmap);
+	}
+	
+	OnLoadOverListener mOnLoadOverListener;
+	
+//	private Handler mHandler = new Handler(){
+//		@Override
+//		public void handleMessage(Message msg){
+//			String url = msg.getData().getString(BitmapLoader.URL_KEY);
+//			Bitmap bitmap = (Bitmap)msg.obj;
+//			sBitmapLoader.removeReqUrl(url);
+//			if(null == bitmap){
+//				Log.e("BitmapLoader::handleMessage",  "bitmap is null & the url is " + url);
+//				return;
+//			}
+//			sBitmapLoader.put(url, bitmap);
+//			if(null != mOnLoadOver){
+//				mOnLoadOver.
+//			}
+//		}
+//	};
 	
 	public static class BitmapCacheHandler extends Handler{
 		
+		OnLoadOverListener mLoadOverListener;
+		public BitmapCacheHandler(OnLoadOverListener listener) {
+			mLoadOverListener = listener;
+		}
 		/**
 		 * 屏蔽掉重写此方法
 		 */
@@ -71,38 +95,46 @@ public class BitmapLoader{
 				return;
 			}
 			sBitmapLoader.put(url, bitmap);
-			onLoadOver(url, bitmap);
+			if(null != mLoadOverListener){
+				mLoadOverListener.onLoadOver(url, bitmap);
+			}
 		}
 		
-		public void onLoadOver(String url, Bitmap bitmap){
-			
-		}
 	}	
 	
-	private BitmapLoader(Configuration configuration){
+	private BitmapLoader(){
+	}	
+	
+	public static BitmapLoader instance(){
+		if(null == sBitmapLoader){
+			sBitmapLoader = new BitmapLoader();
+		}
+		return sBitmapLoader;
+	}
+	
+	/**
+	 * must init
+	 * @param configuration
+	 */
+	public void init(Configuration configuration){
+		mIsInit = true;
 		mConfiguration = configuration;
 		mNetExecutor = new ThreadPoolExecutor(mConfiguration.mNetThreadCount, mConfiguration.mNetThreadCount, 30,
 				TimeUnit.SECONDS, mNetQueue,new ThreadPoolExecutor.DiscardOldestPolicy());
 		mFileExecutor = new ThreadPoolExecutor(mConfiguration.mFileThreadCount, mConfiguration.mFileThreadCount, 20, 
 				TimeUnit.SECONDS, mFileQueue,new ThreadPoolExecutor.DiscardOldestPolicy());
-//		mBitmapFileCache = UnLimitFileCache.instance(fileCacheDir);
-//		mBitmapMemoryPool = BitmapLruMemoryPool.instance(memeryPoolSize);
-//		mFileExecutor = (ThreadPoolExecutor)Executors.newCachedThreadPool();
-//		mNetExecutor = (ThreadPoolExecutor)Executors.newCachedThreadPool();
-	}	
-	
-	public static BitmapLoader instance(Configuration configuration){
-		if(null == sBitmapLoader){
-			sBitmapLoader = new BitmapLoader(configuration);
-		}
-		return sBitmapLoader;
 	}
 	
 	public static BitmapLoader getInstance(){
 		return sBitmapLoader;
 	}
 	
+	public boolean isInit(){
+		return mIsInit;
+	}
+	
 	public Bitmap getBitmap(String url){
+		checkInit();
 		// from memory
 		Bitmap bitmap = mConfiguration.mMemoryCache.get(url);	
 		if(null == bitmap || bitmap.isRecycled()){
@@ -112,6 +144,7 @@ public class BitmapLoader{
 	}
 	
 	public Bitmap getBitmapFromFile(String url){
+		checkInit();
 		Bitmap bitmap = mConfiguration.mFileCaceh.get(url);
 		if(null != bitmap && !bitmap.isRecycled()){
 			put(url, bitmap);
@@ -119,26 +152,32 @@ public class BitmapLoader{
 		return bitmap;
 	}
 	
+	/**
+	 * only put it to cache- -
+	 * @param url
+	 */
 	public void reqBitmap(String url){
-		reqBitmap(url, new BitmapCacheHandler(), null);
+		reqBitmap(url, null, null);
 	}
 	
-	public void reqBitmap(String url, BitmapCacheHandler handler){
-		reqBitmap(url, handler, null);
+	public void reqBitmap(String url, OnLoadOverListener listener){
+		reqBitmap(url, listener, null);
 	}
 	
-	public void reqBitmap(final String url, final BitmapCacheHandler handler, 
+	public void reqBitmap(final String url, final OnLoadOverListener listener, 
 			final Options options){
-		
-		if(url == null || url.length() ==0){
+		checkInit();
+		if(url == null || url.length() == 0){
 			return;
 		}
 		
 		if(mReqingUrls.contains(url)){
+			Debug.d("***** is in contain url *****");
 			return;
 		}
+		final BitmapCacheHandler handler = new BitmapCacheHandler(listener);
 		mReqingUrls.add(url);
-		final BaseHandlingBitmap handling;
+		final BaseHandleBitmap handling;
 		if(url.endsWith(CORNER_TAIL)){
 			handling  = new RoundCornerBitmap();
 		}else{
@@ -173,6 +212,12 @@ public class BitmapLoader{
 	
 	public void recycleAll(){
 //		mBitmapMemoryPool.freeAll();
+	}
+	
+	private void checkInit(){
+		if(mConfiguration == null) {
+			throw new IllegalStateException("not init");
+		}
 	}
 	
 	private void sendMessage(Bitmap bitmap, Handler handler, String url){

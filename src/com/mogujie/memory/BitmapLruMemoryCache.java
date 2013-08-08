@@ -8,11 +8,11 @@ import android.graphics.Bitmap;
  * 当图片池超过的时候，会删掉最先使用的~
  * @author 6a209
  */
-class BitmapLruMemoryCache implements IMemoryCache{
+public class BitmapLruMemoryCache implements IMemoryCache{
 
 	private BitmapLruCache<String, Bitmap> mLruCache;
 	
-	private BitmapLruMemoryCache(int size){
+	public BitmapLruMemoryCache(int size){
 		mLruCache = new BitmapLruCache<String, Bitmap>(size);
 	}
 	

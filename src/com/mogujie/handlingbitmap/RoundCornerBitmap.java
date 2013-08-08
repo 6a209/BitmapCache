@@ -14,7 +14,7 @@ import android.graphics.RectF;
  * @author 6a209
  * 12:09:30 PM Dec 14, 2012
  */
-public class RoundCornerBitmap extends BaseHandlingBitmap{
+public class RoundCornerBitmap extends BaseHandleBitmap{
 
 	private static final int DEFAULT_CORNER_SIZE = 10;
 	private int mCornerSize = DEFAULT_CORNER_SIZE;
