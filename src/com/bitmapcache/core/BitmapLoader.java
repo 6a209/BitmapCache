@@ -22,9 +22,9 @@ import android.os.Message;
 import android.util.Log;
 import android.widget.ImageView;
 
+import com.bitmapcache.handlebitmap.BaseHandleBitmap;
+import com.bitmapcache.handlebitmap.RoundCornerBitmap;
 import com.bitmapcache.utils.Debug;
-import com.mogujie.handlingbitmap.BaseHandleBitmap;
-import com.mogujie.handlingbitmap.RoundCornerBitmap;
 
 
 /**
@@ -59,23 +59,6 @@ public class BitmapLoader{
 	
 	OnLoadOverListener mOnLoadOverListener;
 	
-//	private Handler mHandler = new Handler(){
-//		@Override
-//		public void handleMessage(Message msg){
-//			String url = msg.getData().getString(BitmapLoader.URL_KEY);
-//			Bitmap bitmap = (Bitmap)msg.obj;
-//			sBitmapLoader.removeReqUrl(url);
-//			if(null == bitmap){
-//				Log.e("BitmapLoader::handleMessage",  "bitmap is null & the url is " + url);
-//				return;
-//			}
-//			sBitmapLoader.put(url, bitmap);
-//			if(null != mOnLoadOver){
-//				mOnLoadOver.
-//			}
-//		}
-//	};
-	
 	public static class BitmapCacheHandler extends Handler{
 		
 		OnLoadOverListener mLoadOverListener;
@@ -91,7 +74,7 @@ public class BitmapLoader{
 			Bitmap bitmap = (Bitmap)msg.obj;
 			sBitmapLoader.removeReqUrl(url);
 			if(null == bitmap){
-				Log.e("BitmapLoader::handleMessage",  "bitmap is null & the url is " + url);
+				Debug.d("handleMessage bitmap is nul");
 				return;
 			}
 			sBitmapLoader.put(url, bitmap);
@@ -164,25 +147,24 @@ public class BitmapLoader{
 		reqBitmap(url, listener, null);
 	}
 	
+	public void reqBitmap(String url, OnLoadOverListener listener, BaseHandleBitmap handleBitmap){
+		reqBitmap(url, listener, handleBitmap, null);
+	}
+	
 	public void reqBitmap(final String url, final OnLoadOverListener listener, 
-			final Options options){
+			final BaseHandleBitmap handleBitmap, final Options options){
 		checkInit();
 		if(url == null || url.length() == 0){
 			return;
 		}
 		
 		if(mReqingUrls.contains(url)){
-			Debug.d("***** is in contain url *****");
+			Debug.d("***** is in contain url ***** the url is >> " + url);
 			return;
 		}
 		final BitmapCacheHandler handler = new BitmapCacheHandler(listener);
 		mReqingUrls.add(url);
-		final BaseHandleBitmap handling;
-		if(url.endsWith(CORNER_TAIL)){
-			handling  = new RoundCornerBitmap();
-		}else{
-			handling  = null;
-		}
+	
 		// from file
 		mFileExecutor.execute(new Runnable() {
 			@Override
@@ -194,17 +176,11 @@ public class BitmapLoader{
 						@Override
 						public void run() {
 							Bitmap bitmapNet = getBitmapFromNet(url, options);
-							if(null != handling){
-								bitmapNet = handling.handlingBitmap(bitmapNet);
-								mConfiguration.mFileCaceh.put(url, bitmapNet, CompressFormat.PNG);
-							}else{
-								mConfiguration.mFileCaceh.put(url, bitmapNet);
-							}
-							sendMessage(bitmapNet, handler, url);
+							sendMessage(bitmapNet, handler, url, handleBitmap);
 						}
 					});
 				}else{
-					sendMessage(bitmap, handler, url);
+					sendMessage(bitmap, handler, url, handleBitmap);
 				}
 			}
 		});
@@ -220,7 +196,13 @@ public class BitmapLoader{
 		}
 	}
 	
-	private void sendMessage(Bitmap bitmap, Handler handler, String url){
+	private void sendMessage(Bitmap bitmap, Handler handler, String url, BaseHandleBitmap handleBitmap){
+		if(null != handleBitmap){
+			bitmap = handleBitmap.handleBitmap(bitmap);
+			mConfiguration.mFileCaceh.put(url, bitmap, CompressFormat.PNG);
+		}else{
+			mConfiguration.mFileCaceh.put(url, bitmap);
+		}
 		Message msg = handler.obtainMessage();
 		msg.obj = bitmap;
 		Bundle bundle = new Bundle();
@@ -232,7 +214,6 @@ public class BitmapLoader{
 	private void put(String url, Bitmap bitmap){
 		mConfiguration.mMemoryCache.put(url, bitmap);
 	}
-	
 	
 	private void removeReqUrl(String url){
 		mReqingUrls.remove(url);

@@ -1,4 +1,4 @@
-package com.mogujie.handlingbitmap;
+package com.bitmapcache.handlebitmap;
 
 import android.graphics.Bitmap;
 
@@ -10,5 +10,5 @@ import android.graphics.Bitmap;
  */
 public abstract class BaseHandleBitmap {
 	
-	public abstract Bitmap handlingBitmap(Bitmap bitmap);
+	public abstract Bitmap handleBitmap(Bitmap bitmap);
 }

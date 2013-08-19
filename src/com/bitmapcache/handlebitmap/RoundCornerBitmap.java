@@ -1,4 +1,4 @@
-package com.mogujie.handlingbitmap;
+package com.bitmapcache.handlebitmap;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -24,7 +24,7 @@ public class RoundCornerBitmap extends BaseHandleBitmap{
 	}
 	
 	@Override
-	public Bitmap handlingBitmap(Bitmap bitmap) {
+	public Bitmap handleBitmap(Bitmap bitmap) {
 		// TODO Auto-generated method stub
 		if (null == bitmap)
 			return null;
