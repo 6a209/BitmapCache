@@ -22,7 +22,7 @@ public class UnLimitFileCache extends BaseFileCache{
 	
 	private static final String DEFAULT_DIR = "/Bitmap-Cache";
 	private static final int DEFAULT_QUALITY = 75;
-	private String mDirPath = Environment.getExternalStorageDirectory() + DEFAULT_DIR;
+//	private String mDirFile = Environment.getExternalStorageDirectory() + DEFAULT_DIR;
 	private static UnLimitFileCache sBitmapFileCache;
 	private int mQuality = DEFAULT_QUALITY;
 	
@@ -30,9 +30,9 @@ public class UnLimitFileCache extends BaseFileCache{
 	
 	private UnLimitFileCache(String fileDir){
 		super(fileDir);
-		mDirPath =  Environment.getExternalStorageDirectory() + File.separator + fileDir;
+		mFilePath =  Environment.getExternalStorageDirectory() + File.separator + fileDir;
 		mDelFileMethod = new DelFileByTime();
-		init(mDirPath);
+		init(mFilePath);
 	}
 	
 	public static UnLimitFileCache instance(String sdcardDir){
@@ -57,15 +57,15 @@ public class UnLimitFileCache extends BaseFileCache{
 	}
 	
 	public String getSDCardDir(){
-		return mDirPath;
+		return mFilePath;
 	}
 	
 	public void delFile(){
-		mDelFileMethod.delFile(mDirPath);
+		mDelFileMethod.delFile(mFilePath);
 	}
 	
 	public void delAllFiles(){
-		mDelFileMethod.delAllFiles(mDirPath);
+		mDelFileMethod.delAllFiles(mFilePath);
 	}
 	
 	public void setCompressQuality(int quality){
@@ -79,11 +79,11 @@ public class UnLimitFileCache extends BaseFileCache{
 		if(!hasSDCard()){
 			return null;
 		}
-		File file = new File(mDirPath, toMD5(url));
+		File file = new File(mFilePath, toMD5(url));
 		if(!file.exists()){
 			return null;
 		}
-		return BitmapFactory.decodeFile(mDirPath + File.separator + toMD5(url));
+		return BitmapFactory.decodeFile(mFilePath + File.separator + toMD5(url));
 	}
 	
 	
@@ -96,7 +96,7 @@ public class UnLimitFileCache extends BaseFileCache{
 	
 	@Override
 	public void put(String url, Bitmap bitmap, CompressFormat format){
-		File file = new File(mDirPath, toMD5(url));
+		File file = new File(mFilePath, toMD5(url));
 		if(file.exists() || null == bitmap || bitmap.isRecycled()){
 			return;
 		}

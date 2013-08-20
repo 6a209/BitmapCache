@@ -12,7 +12,7 @@ import android.graphics.Bitmap;
  */
 public abstract class BaseFileCache implements IFileCache{
 
-	protected File mDirFile;
+	protected String mFilePath;
 	
 	public BaseFileCache(String fileDir){
 		if(null == fileDir){
@@ -34,13 +34,14 @@ public abstract class BaseFileCache implements IFileCache{
 	}
 	
 	public void clear(){
-		if(null == mDirFile){
+		final File dir = new File(mFilePath);
+		if(!dir.exists()){
 			return;
 		}
 		new Thread(){
 			@Override
 			public void run(){
-				File [] list = mDirFile.listFiles();
+				File [] list = dir.listFiles();
 				if(null != list){
 					for(int i = 0; i < list.length; i++){
 						list[i].delete();

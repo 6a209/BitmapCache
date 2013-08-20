@@ -19,11 +19,8 @@ import android.graphics.BitmapFactory.Options;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
-import android.widget.ImageView;
 
 import com.bitmapcache.handlebitmap.BaseHandleBitmap;
-import com.bitmapcache.handlebitmap.RoundCornerBitmap;
 import com.bitmapcache.utils.Debug;
 
 
