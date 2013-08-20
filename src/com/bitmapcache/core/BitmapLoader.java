@@ -186,8 +186,13 @@ public class BitmapLoader{
 		});
 	}
 	
+	
 	public void recycleAll(){
 //		mBitmapMemoryPool.freeAll();
+	}
+	
+	public void clearFile(){
+		mConfiguration.mFileCaceh.clear();
 	}
 	
 	private void checkInit(){
