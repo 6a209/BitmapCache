@@ -18,7 +18,7 @@ import com.mogujie.bitmapcache.R;
 public class WebImageView extends ImageView{
 
 	Drawable mDefaultDrawable;
-	String storeUrl;
+	
 	
 	public WebImageView(Context context){
 		this(context, null);
@@ -44,8 +44,8 @@ public class WebImageView extends ImageView{
 		setImageUrl(url, null, handleBitmap);
 	}
 	
-	public void setImageUrl(String url, Bitmap stubBitmap, BaseHandleBitmap handleBitmap){
-		storeUrl = url;
+	protected void setImageUrl(String url, Bitmap stubBitmap, BaseHandleBitmap handleBitmap){
+		
 		BitmapLoader loader = BitmapLoader.instance();
 		Bitmap bitmap = loader.getBitmap(url);
 		if(null == bitmap || bitmap.isRecycled()){
@@ -65,13 +65,7 @@ public class WebImageView extends ImageView{
 		}
 	}
 	
-	public void onLeave(){
-		setImageResource(R.drawable.stay_pic);
-	}
 	
-	public void onRefresh(){
-		setImageUrl(storeUrl);
-	}
 	
 	
 }
