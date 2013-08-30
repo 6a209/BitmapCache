@@ -33,6 +33,7 @@ public abstract class BaseFileCache implements IFileCache{
 		return null;
 	}
 	
+	@Override
 	public void clear(){
 		final File dir = new File(mFilePath);
 		if(!dir.exists()){
