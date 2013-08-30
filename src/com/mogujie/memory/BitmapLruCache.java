@@ -24,6 +24,6 @@ public class BitmapLruCache<K, V> extends LruCache<K, V>{
 		@Override
 		protected void entryRemoved(boolean evicted, K key, V old, V newValue){
 			Bitmap oldValue = (Bitmap)old;
-//			oldValue.recycle();
+			oldValue.recycle();
 		}
 }

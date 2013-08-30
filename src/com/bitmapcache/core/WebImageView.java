@@ -8,6 +8,7 @@ import android.widget.ImageView;
 
 import com.bitmapcache.core.BitmapLoader.OnLoadOverListener;
 import com.bitmapcache.handlebitmap.BaseHandleBitmap;
+import com.mogujie.bitmapcache.R;
 
 /**
  * the bitmap from web
@@ -17,6 +18,7 @@ import com.bitmapcache.handlebitmap.BaseHandleBitmap;
 public class WebImageView extends ImageView{
 
 	Drawable mDefaultDrawable;
+	
 	
 	public WebImageView(Context context){
 		this(context, null);
@@ -42,7 +44,8 @@ public class WebImageView extends ImageView{
 		setImageUrl(url, null, handleBitmap);
 	}
 	
-	public void setImageUrl(String url, Bitmap stubBitmap, BaseHandleBitmap handleBitmap){
+	protected void setImageUrl(String url, Bitmap stubBitmap, BaseHandleBitmap handleBitmap){
+		
 		BitmapLoader loader = BitmapLoader.instance();
 		Bitmap bitmap = loader.getBitmap(url);
 		if(null == bitmap || bitmap.isRecycled()){
@@ -61,6 +64,7 @@ public class WebImageView extends ImageView{
 			setImageBitmap(bitmap);
 		}
 	}
+	
 	
 	
 	

@@ -155,10 +155,10 @@ public class BitmapLoader{
 			return;
 		}
 		
-		if(mReqingUrls.contains(url)){
-			Debug.d("***** is in contain url ***** the url is >> " + url);
-			return;
-		}
+//		if(mReqingUrls.contains(url)){
+//			Debug.d("***** is in contain url ***** the url is >> " + url);
+//			return;
+//		}
 		final BitmapCacheHandler handler = new BitmapCacheHandler(listener);
 		mReqingUrls.add(url);
 	
@@ -201,10 +201,8 @@ public class BitmapLoader{
 	private void sendMessage(Bitmap bitmap, Handler handler, String url, BaseHandleBitmap handleBitmap){
 		if(null != handleBitmap){
 			bitmap = handleBitmap.handleBitmap(bitmap);
-			mConfiguration.mFileCaceh.put(url, bitmap, CompressFormat.PNG);
-		}else{
-			mConfiguration.mFileCaceh.put(url, bitmap);
 		}
+		mConfiguration.mFileCaceh.put(url, bitmap, CompressFormat.PNG);
 		Message msg = handler.obtainMessage();
 		msg.obj = bitmap;
 		Bundle bundle = new Bundle();
