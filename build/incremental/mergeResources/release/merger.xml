@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger>
+
+    <dataSet config="main" >
+        <source path="/Users/6a209/dev/MogujieTuan/library/BitmapCache/res" >
+            <file
+                name="ic_launcher"
+                path="/Users/6a209/dev/MogujieTuan/library/BitmapCache/res/drawable-hdpi/ic_launcher.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="ic_launcher"
+                path="/Users/6a209/dev/MogujieTuan/library/BitmapCache/res/drawable-mdpi/ic_launcher.png"
+                qualifiers="mdpi"
+                type="drawable" />
+            <file
+                name="ic_launcher"
+                path="/Users/6a209/dev/MogujieTuan/library/BitmapCache/res/drawable-xhdpi/ic_launcher.png"
+                qualifiers="xhdpi"
+                type="drawable" />
+            <file
+                path="/Users/6a209/dev/MogujieTuan/library/BitmapCache/res/values/strings.xml"
+                qualifiers="" >
+                <string name="app_name" >BitmapCache
+                </string>
+            </file>
+            <file
+                path="/Users/6a209/dev/MogujieTuan/library/BitmapCache/res/values/styles.xml"
+                qualifiers="" >
+
+                <style
+                    name="AppBaseTheme"
+                    parent="android:Theme.Light" >
+
+                    <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+                    -->
+                </style>
+
+                <style
+                    name="AppTheme"
+                    parent="AppBaseTheme" >
+
+                    <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+                </style>
+            </file>
+        </source>
+        <source path="/Users/6a209/dev/MogujieTuan/library/BitmapCache/build/res/rs/release" />
+    </dataSet>
+    <dataSet config="release" >
+        <source path="/Users/6a209/dev/MogujieTuan/library/BitmapCache/src/release/res" />
+    </dataSet>
+
+</merger>

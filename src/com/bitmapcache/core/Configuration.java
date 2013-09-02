@@ -29,7 +29,7 @@ public class Configuration {
 	
 	public static class Builder{
 		
-		private int mMemoryCacheSize = 1024 * 1024 * 8;  
+		private int mMemoryCacheSize = 1024 * 1024 * 10;
 		private String mBitmapCacheDir = "bitmapcache";
 		private int mFileCacheThreadCount = 3;
 		private int mNetThreadCount = 3;

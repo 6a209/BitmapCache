@@ -8,7 +8,6 @@ import android.widget.ImageView;
 
 import com.bitmapcache.core.BitmapLoader.OnLoadOverListener;
 import com.bitmapcache.handlebitmap.BaseHandleBitmap;
-import com.mogujie.bitmapcache.R;
 
 /**
  * the bitmap from web
@@ -18,7 +17,7 @@ import com.mogujie.bitmapcache.R;
 public class WebImageView extends ImageView{
 
 	Drawable mDefaultDrawable;
-	
+    String mUrl;
 	
 	public WebImageView(Context context){
 		this(context, null);
@@ -33,19 +32,27 @@ public class WebImageView extends ImageView{
 	}
 	
 	public void setImageUrl(String url){
-		setImageUrl(url, null, null);
+		setImageUrl(url, -1, null);
 	}
-	
-	public void setIamgeUrl(String url, Bitmap stubBitmap){
-		setImageUrl(url, stubBitmap, null);
+
+	public void setImageUrl(String url, int stubResId){
+		setImageUrl(url, stubResId, null);
 	}
 	
 	public void setImageUrl(String url, BaseHandleBitmap handleBitmap){
-		setImageUrl(url, null, handleBitmap);
+		setImageUrl(url, -1, handleBitmap);
 	}
 	
-	protected void setImageUrl(String url, Bitmap stubBitmap, BaseHandleBitmap handleBitmap){
-		
+	protected void setImageUrl(String url, int stubId, BaseHandleBitmap handleBitmap){
+        mUrl = url;
+        if(-1 != stubId){
+
+            Drawable drawable = getResources().getDrawable(stubId);
+            if(null != drawable){
+                mDefaultDrawable = drawable;
+            }
+        }
+
 		BitmapLoader loader = BitmapLoader.instance();
 		Bitmap bitmap = loader.getBitmap(url);
 		if(null == bitmap || bitmap.isRecycled()){
@@ -55,7 +62,7 @@ public class WebImageView extends ImageView{
 			loader.reqBitmap(url, new OnLoadOverListener() {
 				@Override
 				public void onLoadOver(String url, Bitmap bitmap) {
-					if(null != bitmap){
+					if(null != bitmap && url.equals(mUrl)){
 						setImageBitmap(bitmap);
 					}					
 				}
@@ -64,8 +71,4 @@ public class WebImageView extends ImageView{
 			setImageBitmap(bitmap);
 		}
 	}
-	
-	
-	
-	
 }
