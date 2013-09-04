@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.mogujie.memory;
+package com.bitmapcache.memory;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

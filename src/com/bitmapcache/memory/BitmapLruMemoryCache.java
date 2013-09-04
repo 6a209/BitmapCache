@@ -1,7 +1,9 @@
-package com.mogujie.memory;
+package com.bitmapcache.memory;
 
 
 import android.graphics.Bitmap;
+
+import java.lang.ref.SoftReference;
 
 /**
  * 图片池, 按内存大小存储，
@@ -10,7 +12,7 @@ import android.graphics.Bitmap;
  */
 public class BitmapLruMemoryCache implements IMemoryCache{
 
-	private BitmapLruCache<String, Bitmap> mLruCache;
+	private BitmapLruCache<String, Bitmap > mLruCache;
 	
 	public BitmapLruMemoryCache(int size){
 		mLruCache = new BitmapLruCache<String, Bitmap>(size);
@@ -43,5 +45,24 @@ public class BitmapLruMemoryCache implements IMemoryCache{
 	public void clear(){
 		mLruCache.evictAll();
 	}
-	
+
+
+    public static class BitmapLruCache<K, V> extends LruCache<K, V>{
+
+		public BitmapLruCache(int maxSize) {
+			super(maxSize);
+		}
+
+		@Override
+		protected int sizeOf(K key, V v) {
+			Bitmap value = (Bitmap)v;
+			return value.getRowBytes() * value.getHeight();
+		}
+
+		@Override
+		protected void entryRemoved(boolean evicted, K key, V old, V newValue){
+			Bitmap oldValue = (Bitmap)old;
+			oldValue.recycle();
+		}
+}
 }

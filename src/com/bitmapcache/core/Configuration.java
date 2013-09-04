@@ -2,8 +2,8 @@ package com.bitmapcache.core;
 
 import com.bitmapcache.disc.IFileCache;
 import com.bitmapcache.disc.UnLimitFileCache;
-import com.mogujie.memory.BitmapLruMemoryCache;
-import com.mogujie.memory.IMemoryCache;
+import com.bitmapcache.memory.BitmapLruMemoryCache;
+import com.bitmapcache.memory.IMemoryCache;
 
 
 public class Configuration {
@@ -29,7 +29,7 @@ public class Configuration {
 	
 	public static class Builder{
 		
-		private int mMemoryCacheSize = 1024 * 1024 * 10;
+		private int mMemoryCacheSize = 1024 * 1024 * 4;
 		private String mBitmapCacheDir = "bitmapcache";
 		private int mFileCacheThreadCount = 3;
 		private int mNetThreadCount = 3;
@@ -63,5 +63,9 @@ public class Configuration {
 			mNetThreadCount = count;
 			return this;
 		}
+
+        public Configuration builder(){
+            return  new Configuration(this);
+        }
 	}
 }

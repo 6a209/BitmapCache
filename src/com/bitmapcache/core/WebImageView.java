@@ -2,6 +2,8 @@ package com.bitmapcache.core;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
@@ -26,6 +28,23 @@ public class WebImageView extends ImageView{
 	public WebImageView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
+
+    @Override
+    public void onDraw(Canvas canvs){
+         Drawable drawable = getDrawable();
+        if(null == drawable){
+            return;
+        }
+        if(drawable instanceof BitmapDrawable){
+            BitmapDrawable bd = (BitmapDrawable)drawable;
+            Bitmap bitmap = bd.getBitmap();
+            if(bitmap.isRecycled()){
+               setImageUrl(mUrl);
+               return;
+            }
+        }
+        super.onDraw(canvs);
+    }
 	
 	public void setDefaultImage(int resId){
 		mDefaultDrawable = getResources().getDrawable(resId);

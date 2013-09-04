@@ -1,7 +1,6 @@
-package com.mogujie.memory;
+package com.bitmapcache.memory;
 
 import android.graphics.Bitmap;
-
 
 
 public interface IMemoryCache {

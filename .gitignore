@@ -1,4 +1,13 @@
 bin/
 gen/
-.svn/
-tag
+libs/
+/.project
+project.properties
+/.classpath
+.DS_Store
+build/
+.idea
+*.iml
+.svn
+build.gradle
+run.sh
